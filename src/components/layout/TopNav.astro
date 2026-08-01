@@ -1,0 +1,53 @@
+---
+import type { Lang, NavItem } from '../../i18n/ui';
+
+interface Props {
+  items: NavItem[];
+  lang: Lang;
+  langLabel: string;
+  alternatePath: string;
+}
+
+const { items, lang, langLabel, alternatePath } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+function isActive(href: string) {
+  const normalized = href.replace(/\/$/, '') || '/';
+  const current = currentPath.replace(/\/$/, '') || '/';
+  return current === normalized;
+}
+---
+
+<header class="sticky top-0 z-50 hidden border-b border-white/10 bg-bg/90 backdrop-blur md:block">
+  <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+    <a href={lang === 'en' ? '/en' : '/'} class="font-mono text-sm text-text">
+      <span class="text-accent">andy</span><span class="text-text-dim">@</span><span class="text-accent-2">dev</span><span class="text-text-dim">:~$</span>
+      <span class="animate-caret text-text">_</span>
+    </a>
+
+    <nav aria-label="Navegación principal" class="flex items-center gap-1">
+      {
+        items.map((item) => (
+          <a
+            href={item.href}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+            class:list={[
+              'rounded-md px-3 py-2 font-mono text-xs tracking-wide transition-colors',
+              isActive(item.href) ? 'text-accent' : 'text-text-muted hover:text-text',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+
+      <a
+        href={alternatePath}
+        class="ml-2 rounded-md border border-border px-2.5 py-1.5 font-mono text-xs text-text-muted transition-colors hover:border-border-accent hover:text-accent"
+        aria-label="Cambiar idioma"
+      >
+        {langLabel}
+      </a>
+    </nav>
+  </div>
+</header>

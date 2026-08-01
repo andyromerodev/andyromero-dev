@@ -1,0 +1,56 @@
+---
+import '../styles/global.css';
+import TopNav from '../components/layout/TopNav.astro';
+import BottomNav from '../components/layout/BottomNav.astro';
+import MobileLangSwitch from '../components/layout/MobileLangSwitch.astro';
+import Footer from '../components/layout/Footer.astro';
+import { getLangFromUrl, useTranslations, getAlternatePath } from '../i18n/utils';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const alternatePath = getAlternatePath(Astro.url, lang);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const pageTitle = title ? `${title} · ${t.site.title}` : t.site.title;
+const pageDescription = description ?? t.site.description;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang={lang === 'es' ? 'en' : 'es'} href={new URL(alternatePath, Astro.site)} />
+
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body class="min-h-screen bg-bg font-sans text-text">
+    <TopNav items={t.nav} lang={lang} langLabel={t.langSwitch.label} alternatePath={alternatePath} />
+    <MobileLangSwitch alternatePath={alternatePath} langLabel={t.langSwitch.label} />
+
+    <main class="pb-20 md:pb-0">
+      <slot />
+    </main>
+
+    <Footer builtWith={t.footer.builtWith} rights={t.footer.rights} />
+    <BottomNav items={t.nav} />
+  </body>
+</html>

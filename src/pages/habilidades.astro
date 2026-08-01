@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Skills from '../sections/Skills/Skills.astro';
+import { useTranslations } from '../i18n/utils';
+
+const lang = 'es' as const;
+const t = useTranslations(lang);
+---
+
+<BaseLayout title={t.skills.title}>
+  <Skills t={t} />
+</BaseLayout>

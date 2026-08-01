@@ -1,0 +1,71 @@
+---
+import type { UiContent, Lang } from '../../i18n/ui';
+import { socialLinks } from '../../i18n/ui';
+
+interface Props {
+  t: UiContent;
+  lang: Lang;
+}
+
+const { t, lang } = Astro.props;
+const projectsHref = lang === 'en' ? '/en/projects' : '/proyectos';
+const contactHref = lang === 'en' ? '/en/contact' : '/contacto';
+---
+
+<section class="mx-auto flex max-w-5xl flex-col gap-8 px-6 pb-16 pt-14 sm:pt-20 md:pb-24 md:pt-28">
+  <p class="font-mono text-sm text-text-dim">
+    <span class="text-accent">andy@dev</span><span class="text-text-dim">:~$</span> {t.hero.prompt}
+    <span class="animate-caret text-text">_</span>
+  </p>
+
+  <div class="flex flex-col gap-4">
+    <h1 class="text-3xl font-semibold tracking-tight text-text sm:text-4xl md:text-5xl">
+      {t.hero.name}
+    </h1>
+    <p class="max-w-2xl font-mono text-sm text-accent-2 sm:text-base">
+      {t.hero.headline}
+    </p>
+    <p class="flex items-center gap-2 font-mono text-xs text-text-dim sm:text-sm">
+      <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z" />
+        <circle cx="12" cy="10" r="2.5" />
+      </svg>
+      {t.hero.location}
+      <span class="ml-2 inline-flex items-center gap-1.5 rounded-full border border-border-accent bg-accent-soft px-2.5 py-0.5 text-accent">
+        <span class="h-1.5 w-1.5 rounded-full bg-accent"></span>
+        {t.hero.availability}
+      </span>
+    </p>
+  </div>
+
+  <p class="max-w-2xl text-base leading-relaxed text-text-muted">
+    {t.hero.summary}
+  </p>
+
+  <div class="flex flex-wrap items-center gap-3">
+    <a
+      href={projectsHref}
+      class="rounded-md bg-accent px-5 py-2.5 font-mono text-sm font-medium text-bg transition-opacity hover:opacity-90"
+    >
+      {t.hero.ctaPrimary}
+    </a>
+    <a
+      href={contactHref}
+      class="rounded-md border border-border px-5 py-2.5 font-mono text-sm text-text transition-colors hover:border-border-accent hover:text-accent"
+    >
+      {t.hero.ctaSecondary}
+    </a>
+  </div>
+
+  <div class="flex items-center gap-5 pt-2">
+    <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="text-text-dim transition-colors hover:text-accent">
+      <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.02 1.75 2.68 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5Z"/></svg>
+    </a>
+    <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-text-dim transition-colors hover:text-accent">
+      <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM.5 8.98h4.96V23.5H.5V8.98Zm7.98 0h4.76v1.98h.07c.66-1.25 2.28-2.57 4.7-2.57 5.03 0 5.96 3.31 5.96 7.61v8.5h-4.96v-7.54c0-1.8-.03-4.11-2.5-4.11-2.51 0-2.9 1.96-2.9 3.98v7.67H8.48V8.98Z"/></svg>
+    </a>
+    <a href={socialLinks.stackoverflow} target="_blank" rel="noopener noreferrer" aria-label="Stack Overflow" class="text-text-dim transition-colors hover:text-accent">
+      <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor"><path d="M17.36 20.2v-5.6h1.87V22H3.83v-7.4h1.87v5.6h11.66ZM7.35 14.3l9.1 1.92.39-1.84-9.1-1.93-.39 1.85Zm1.2-4.36 8.42 3.93.8-1.68-8.43-3.94-.8 1.69Zm2.35-4.19 7.15 5.95 1.2-1.44-7.15-5.96-1.2 1.45ZM15.98.5l-1.5 1.12 5.6 7.5 1.5-1.12-5.6-7.5ZM7.17 18.4h9.4v-1.87h-9.4v1.87Z"/></svg>
+    </a>
+  </div>
+</section>

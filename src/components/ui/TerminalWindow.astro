@@ -1,0 +1,24 @@
+---
+interface Props {
+  prompt: string;
+  class?: string;
+}
+
+const { prompt, class: className } = Astro.props;
+---
+
+<div class:list={['overflow-hidden rounded-lg border border-border bg-surface', className]}>
+  <div class="flex items-center gap-4 border-b border-white/10 bg-white/[0.03] px-4 py-2.5">
+    <div class="flex gap-1.5">
+      <span class="h-2.5 w-2.5 rounded-full bg-danger/80"></span>
+      <span class="h-2.5 w-2.5 rounded-full bg-warn/80"></span>
+      <span class="h-2.5 w-2.5 rounded-full bg-ok/80"></span>
+    </div>
+    <p class="font-mono text-xs text-text-dim">
+      <span class="text-accent">andy@dev</span><span class="text-text-dim">:~$</span> {prompt}
+    </p>
+  </div>
+  <div class="p-5 sm:p-6">
+    <slot />
+  </div>
+</div>

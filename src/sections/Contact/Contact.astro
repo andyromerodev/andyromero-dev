@@ -1,0 +1,63 @@
+---
+import type { UiContent } from '../../i18n/ui';
+import { socialLinks } from '../../i18n/ui';
+import TerminalWindow from '../../components/ui/TerminalWindow.astro';
+
+interface Props {
+  t: UiContent;
+}
+
+const { t } = Astro.props;
+const { contact, hero } = t;
+
+const links = [
+  { label: 'Email', value: socialLinks.email, href: `mailto:${socialLinks.email}` },
+  { label: 'GitHub', value: 'github.com/andyromerodev', href: socialLinks.github },
+  { label: 'LinkedIn', value: 'linkedin.com/in/andyromerodev', href: socialLinks.linkedin },
+  { label: 'Stack Overflow', value: 'stackoverflow.com/users/5708478/andy-romero', href: socialLinks.stackoverflow },
+];
+---
+
+<section class="mx-auto flex max-w-2xl flex-col gap-8 px-6 py-14 md:py-20">
+  <div class="flex flex-col gap-3">
+    <h1 class="font-mono text-xs uppercase tracking-widest text-text-dim">{contact.eyebrow}</h1>
+    <h2 class="text-2xl font-semibold text-text sm:text-3xl">{contact.title}</h2>
+    <p class="max-w-xl text-sm text-text-muted sm:text-base">{contact.intro}</p>
+  </div>
+
+  <TerminalWindow prompt="whoami --contact">
+    <dl class="flex flex-col gap-4">
+      <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
+        <dt class="w-32 shrink-0 font-mono text-xs text-text-dim">{contact.locationLabel}</dt>
+        <dd class="text-sm text-text-muted">{hero.location}</dd>
+      </div>
+      <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
+        <dt class="w-32 shrink-0 font-mono text-xs text-text-dim">{contact.emailLabel}</dt>
+        <dd>
+          <a href={`mailto:${socialLinks.email}`} class="font-mono text-sm text-accent-2 hover:text-accent">
+            {socialLinks.email}
+          </a>
+        </dd>
+      </div>
+    </dl>
+  </TerminalWindow>
+
+  <div class="flex flex-col gap-3">
+    <p class="font-mono text-xs uppercase tracking-widest text-text-dim">{contact.linksTitle}</p>
+    <div class="flex flex-col divide-y divide-white/10 rounded-lg border border-border bg-surface">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            target={link.href.startsWith('mailto:') ? undefined : '_blank'}
+            rel={link.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+            class="flex items-center justify-between px-5 py-3.5 transition-colors hover:bg-white/[0.03]"
+          >
+            <span class="font-mono text-sm text-text">{link.label}</span>
+            <span class="font-mono text-xs text-text-dim">{link.value}</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

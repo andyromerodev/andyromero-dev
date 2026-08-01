@@ -1,0 +1,23 @@
+---
+import { socialLinks } from '../../i18n/ui';
+
+interface Props {
+  builtWith: string;
+  rights: string;
+}
+
+const { builtWith, rights } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-24 border-t border-white/10 pb-24 pt-10 md:pb-10">
+  <div class="mx-auto flex max-w-5xl flex-col items-center gap-3 px-6 text-center font-mono text-xs text-text-dim">
+    <div class="flex items-center gap-4">
+      <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" class="hover:text-accent">GitHub</a>
+      <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-accent">LinkedIn</a>
+      <a href={socialLinks.stackoverflow} target="_blank" rel="noopener noreferrer" class="hover:text-accent">Stack Overflow</a>
+    </div>
+    <p>{builtWith}</p>
+    <p>&copy; {year} Andy Luis Hernández Romero — {rights}</p>
+  </div>
+</footer>
