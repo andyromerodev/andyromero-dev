@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const lastUpdated = '26 de agosto de 2026';
+---
+
+<BaseLayout
+  title="Política de Privacidad · QPay"
+  description="Política de privacidad de QPay, aplicación Android personal inspirada en los servicios de QvaPay."
+>
+  <section class="mx-auto flex max-w-3xl flex-col gap-10 px-6 py-14 md:py-20">
+    <div class="flex flex-col gap-3">
+      <h1 class="font-mono text-xs uppercase tracking-widest text-text-dim">Política de Privacidad</h1>
+      <h2 class="text-2xl font-semibold text-text md:text-3xl">QPay</h2>
+      <p class="text-sm text-text-dim">Última actualización: {lastUpdated}</p>
+    </div>
+
+    <div class="flex flex-col gap-8 text-sm leading-relaxed text-text-muted md:text-base">
+      <p>
+        QPay es una aplicación Android personal desarrollada de forma independiente, inspirada en los servicios de
+        <strong class="text-text">QvaPay</strong>. No es una app oficial de QvaPay ni está afiliada a esa empresa. Esta
+        política explica qué datos recolecta QPay, cómo se usan y con quién se comparten.
+      </p>
+
+      <div class="flex flex-col gap-3">
+        <h3 class="font-mono text-sm font-medium text-text"><span class="text-accent">#</span> Datos que recolectamos</h3>
+        <ul class="flex flex-col gap-2">
+          <li class="flex gap-2">
+            <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-text-dim"></span>
+            <span>
+              <strong class="text-text">Cuenta y perfil:</strong> nombre, correo electrónico y datos de perfil que
+              proporcionás al iniciar sesión o registrarte, gestionados a través de la API de QvaPay.
+            </span>
+          </li>
+          <li class="flex gap-2">
+            <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-text-dim"></span>
+            <span>
+              <strong class="text-text">Token de notificaciones push:</strong> usamos Firebase Cloud Messaging para
+              enviarte alertas sobre tus ofertas P2P (por ejemplo, cuando alguien aplica a una oferta tuya).
+            </span>
+          </li>
+          <li class="flex gap-2">
+            <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-text-dim"></span>
+            <span>
+              <strong class="text-text">Reportes de errores:</strong> si la app falla, se envía un reporte técnico
+              (mensaje de error, stack trace, información del dispositivo) a un backend propio para poder
+              diagnosticar y corregir el problema. Estos reportes no incluyen tu contraseña.
+            </span>
+          </li>
+          <li class="flex gap-2">
+            <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-text-dim"></span>
+            <span>
+              <strong class="text-text">Cámara:</strong> se usa únicamente para escanear códigos QR dentro de la app.
+              No se capturan ni almacenan fotos.
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <h3 class="font-mono text-sm font-medium text-text"><span class="text-accent">#</span> Qué NO hacemos</h3>
+        <ul class="flex flex-col gap-2">
+          <li class="flex gap-2">
+            <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-text-dim"></span>
+            <span>No usamos librerías de analítica ni rastreo publicitario de terceros.</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-text-dim"></span>
+            <span>No vendemos ni compartimos tus datos con anunciantes.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <h3 class="font-mono text-sm font-medium text-text"><span class="text-accent">#</span> Terceros que procesan datos</h3>
+        <ul class="flex flex-col gap-2">
+          <li class="flex gap-2">
+            <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-text-dim"></span>
+            <span><strong class="text-text">QvaPay:</strong> autenticación, perfil y operaciones P2P.</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-text-dim"></span>
+            <span><strong class="text-text">Google Firebase:</strong> entrega de notificaciones push.</span>
+          </li>
+          <li class="flex gap-2">
+            <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-text-dim"></span>
+            <span><strong class="text-text">Appwrite:</strong> almacenamiento de reportes de errores técnicos.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <h3 class="font-mono text-sm font-medium text-text"><span class="text-accent">#</span> Tus derechos</h3>
+        <p>
+          Podés solicitar la eliminación de tu cuenta y tus datos en cualquier momento contactando al desarrollador.
+          Al desinstalar la app se detiene el envío de notificaciones push asociadas a tu dispositivo.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <h3 class="font-mono text-sm font-medium text-text"><span class="text-accent">#</span> Contacto</h3>
+        <p>
+          Para consultas sobre privacidad o solicitudes de eliminación de datos, escribí a través del
+          <a href="https://t.me/qvapayandroid" class="text-accent underline underline-offset-2" target="_blank" rel="noopener noreferrer">
+            canal de Telegram del proyecto
+          </a>
+          o desde el formulario de <a href="/contacto" class="text-accent underline underline-offset-2">contacto</a> de este sitio.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
