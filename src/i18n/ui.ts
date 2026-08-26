@@ -98,6 +98,25 @@ export interface UiContent {
     builtWith: string;
     rights: string;
   };
+  qvapayPrivacy: {
+    pageTitle: string;
+    metaDescription: string;
+    eyebrow: string;
+    title: string;
+    lastUpdated: string;
+    intro: string;
+    dataTitle: string;
+    dataItems: { label: string; text: string }[];
+    notDoingTitle: string;
+    notDoingItems: string[];
+    thirdPartiesTitle: string;
+    thirdPartiesItems: { label: string; text: string }[];
+    rightsTitle: string;
+    rightsText: string;
+    contactTitle: string;
+    contactTelegramLabel: string;
+    contactSiteLabel: string;
+  };
 }
 
 const nav = (t: { home: string; about: string; projects: string; skills: string; contact: string }, prefix: string): NavItem[] => [
@@ -300,6 +319,51 @@ export const ui: Record<Lang, UiContent> = {
       builtWith: 'Construido con Astro + Tailwind CSS.',
       rights: 'Todos los derechos reservados.',
     },
+    qvapayPrivacy: {
+      pageTitle: 'Política de Privacidad · QPay',
+      metaDescription: 'Política de privacidad de QPay, aplicación Android personal inspirada en los servicios de QvaPay.',
+      eyebrow: 'Política de Privacidad',
+      title: 'QPay',
+      lastUpdated: 'Última actualización: 26 de agosto de 2026',
+      intro:
+        'QPay es una aplicación Android personal desarrollada de forma independiente, inspirada en los servicios de QvaPay. No es una app oficial de QvaPay ni está afiliada a esa empresa. Esta política explica qué datos recolecta QPay, cómo se usan y con quién se comparten.',
+      dataTitle: 'Datos que recolectamos',
+      dataItems: [
+        {
+          label: 'Cuenta y perfil',
+          text: 'nombre, correo electrónico y datos de perfil que proporcionás al iniciar sesión o registrarte, gestionados a través de la API de QvaPay.',
+        },
+        {
+          label: 'Token de notificaciones push',
+          text: 'usamos Firebase Cloud Messaging para enviarte alertas sobre tus ofertas P2P (por ejemplo, cuando alguien aplica a una oferta tuya).',
+        },
+        {
+          label: 'Reportes de errores',
+          text: 'si la app falla, se envía un reporte técnico (mensaje de error, stack trace, información del dispositivo) a un backend propio para poder diagnosticar y corregir el problema. Estos reportes no incluyen tu contraseña.',
+        },
+        {
+          label: 'Cámara',
+          text: 'se usa únicamente para escanear códigos QR dentro de la app. No se capturan ni almacenan fotos.',
+        },
+      ],
+      notDoingTitle: 'Qué NO hacemos',
+      notDoingItems: [
+        'No usamos librerías de analítica ni rastreo publicitario de terceros.',
+        'No vendemos ni compartimos tus datos con anunciantes.',
+      ],
+      thirdPartiesTitle: 'Terceros que procesan datos',
+      thirdPartiesItems: [
+        { label: 'QvaPay', text: 'autenticación, perfil y operaciones P2P.' },
+        { label: 'Google Firebase', text: 'entrega de notificaciones push.' },
+        { label: 'Appwrite', text: 'almacenamiento de reportes de errores técnicos.' },
+      ],
+      rightsTitle: 'Tus derechos',
+      rightsText:
+        'Podés solicitar la eliminación de tu cuenta y tus datos en cualquier momento contactando al desarrollador. Al desinstalar la app se detiene el envío de notificaciones push asociadas a tu dispositivo.',
+      contactTitle: 'Contacto',
+      contactTelegramLabel: 'canal de Telegram del proyecto',
+      contactSiteLabel: 'contacto',
+    },
   },
   en: {
     site: {
@@ -478,6 +542,51 @@ export const ui: Record<Lang, UiContent> = {
     footer: {
       builtWith: 'Built with Astro + Tailwind CSS.',
       rights: 'All rights reserved.',
+    },
+    qvapayPrivacy: {
+      pageTitle: 'Privacy Policy · QPay',
+      metaDescription: 'Privacy policy for QPay, a personal Android app inspired by QvaPay’s services.',
+      eyebrow: 'Privacy Policy',
+      title: 'QPay',
+      lastUpdated: 'Last updated: August 26, 2026',
+      intro:
+        'QPay is a personal Android app developed independently, inspired by QvaPay’s services. It is not an official QvaPay app and is not affiliated with that company. This policy explains what data QPay collects, how it is used, and who it is shared with.',
+      dataTitle: 'Data we collect',
+      dataItems: [
+        {
+          label: 'Account and profile',
+          text: 'name, email address, and profile data you provide when signing in or registering, managed through the QvaPay API.',
+        },
+        {
+          label: 'Push notification token',
+          text: 'we use Firebase Cloud Messaging to send you alerts about your P2P offers (for example, when someone applies to one of your offers).',
+        },
+        {
+          label: 'Error reports',
+          text: 'if the app crashes, a technical report (error message, stack trace, device information) is sent to our own backend so we can diagnose and fix the issue. These reports never include your password.',
+        },
+        {
+          label: 'Camera',
+          text: 'used only to scan QR codes within the app. No photos are captured or stored.',
+        },
+      ],
+      notDoingTitle: 'What we do NOT do',
+      notDoingItems: [
+        'We do not use third-party analytics or advertising tracking libraries.',
+        'We do not sell or share your data with advertisers.',
+      ],
+      thirdPartiesTitle: 'Third parties that process data',
+      thirdPartiesItems: [
+        { label: 'QvaPay', text: 'authentication, profile, and P2P operations.' },
+        { label: 'Google Firebase', text: 'push notification delivery.' },
+        { label: 'Appwrite', text: 'storage of technical error reports.' },
+      ],
+      rightsTitle: 'Your rights',
+      rightsText:
+        'You can request deletion of your account and data at any time by contacting the developer. Uninstalling the app stops push notifications tied to your device.',
+      contactTitle: 'Contact',
+      contactTelegramLabel: 'project Telegram channel',
+      contactSiteLabel: 'contact',
     },
   },
 };

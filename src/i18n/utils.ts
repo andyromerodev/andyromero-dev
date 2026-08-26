@@ -20,6 +20,7 @@ const esToEnSlug: Record<string, string> = {
   proyectos: 'projects',
   habilidades: 'skills',
   contacto: 'contact',
+  'qvapay/privacidad': 'qvapay/privacy',
 };
 
 const enToEsSlug: Record<string, string> = Object.fromEntries(Object.entries(esToEnSlug).map(([es, en]) => [en, es]));

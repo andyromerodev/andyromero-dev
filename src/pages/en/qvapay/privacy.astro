@@ -1,8 +1,8 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { useTranslations } from '../../i18n/utils';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../../i18n/utils';
 
-const lang = 'es' as const;
+const lang = 'en' as const;
 const t = useTranslations(lang);
 const { qvapayPrivacy: p } = t;
 ---
@@ -72,11 +72,11 @@ const { qvapayPrivacy: p } = t;
       <div class="flex flex-col gap-3">
         <h3 class="font-mono text-sm font-medium text-text"><span class="text-accent">#</span> {p.contactTitle}</h3>
         <p>
-          Para consultas sobre privacidad o solicitudes de eliminación de datos, escribí a través del
+          For privacy questions or data deletion requests, reach out via the
           <a href="https://t.me/qvapayandroid" class="text-accent underline underline-offset-2" target="_blank" rel="noopener noreferrer">
             {p.contactTelegramLabel}
           </a>
-          o desde el formulario de <a href="/contacto" class="text-accent underline underline-offset-2">{p.contactSiteLabel}</a> de este sitio.
+          or through this site's <a href="/en/contact" class="text-accent underline underline-offset-2">{p.contactSiteLabel}</a> form.
         </p>
       </div>
     </div>
