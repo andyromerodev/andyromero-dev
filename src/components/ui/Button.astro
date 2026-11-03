@@ -1,0 +1,30 @@
+---
+interface Props {
+  href: string;
+  variant?: 'filled' | 'tonal' | 'outlined' | 'text';
+  external?: boolean;
+  class?: string;
+}
+
+const { href, variant = 'filled', external = false, class: className } = Astro.props;
+
+const variants = {
+  filled: 'bg-primary text-on-primary',
+  tonal: 'bg-secondary-container text-on-secondary-container',
+  outlined: 'border border-outline text-primary',
+  text: 'px-3 text-primary',
+};
+---
+
+<a
+  href={href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+  class:list={[
+    'state-layer label-lg inline-flex h-10 items-center justify-center gap-2 rounded-full px-6 transition-[border-radius] duration-200 ease-spatial active:rounded-md',
+    variants[variant],
+    className,
+  ]}
+>
+  <slot />
+</a>

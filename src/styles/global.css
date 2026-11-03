@@ -1,53 +1,160 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/roboto-flex/index.css';
 @import '@fontsource/jetbrains-mono/400.css';
-@import '@fontsource/jetbrains-mono/500.css';
-@import '@fontsource/jetbrains-mono/700.css';
-@import '@fontsource/inter/400.css';
-@import '@fontsource/inter/500.css';
-@import '@fontsource/inter/600.css';
+
+/* Material 3 color roles, generated from seed #2E6B4F (light) */
+:root {
+  --md-primary: #2b6a4c;
+  --md-on-primary: #ffffff;
+  --md-primary-container: #b0f1cb;
+  --md-on-primary-container: #002113;
+  --md-secondary: #4d6356;
+  --md-on-secondary: #ffffff;
+  --md-secondary-container: #cfe9d7;
+  --md-on-secondary-container: #0a1f15;
+  --md-tertiary: #3c6471;
+  --md-on-tertiary: #ffffff;
+  --md-tertiary-container: #c0e9f9;
+  --md-on-tertiary-container: #001f27;
+  --md-error: #ba1a1a;
+  --md-surface: #f6fbf4;
+  --md-on-surface: #171d19;
+  --md-on-surface-variant: #404943;
+  --md-surface-container-lowest: #ffffff;
+  --md-surface-container-low: #f0f5ee;
+  --md-surface-container: #eaefe9;
+  --md-surface-container-high: #e5eae3;
+  --md-surface-container-highest: #dfe4dd;
+  --md-outline: #707973;
+  --md-outline-variant: #c0c9c1;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --md-primary: #95d5b0;
+    --md-on-primary: #003822;
+    --md-primary-container: #0e5136;
+    --md-on-primary-container: #b0f1cb;
+    --md-secondary: #b3ccbc;
+    --md-on-secondary: #1f352a;
+    --md-secondary-container: #354b3f;
+    --md-on-secondary-container: #cfe9d7;
+    --md-tertiary: #a4cddc;
+    --md-on-tertiary: #053541;
+    --md-tertiary-container: #234c59;
+    --md-on-tertiary-container: #c0e9f9;
+    --md-error: #ffb4ab;
+    --md-surface: #0f1511;
+    --md-on-surface: #dfe4dd;
+    --md-on-surface-variant: #c0c9c1;
+    --md-surface-container-lowest: #0a0f0c;
+    --md-surface-container-low: #171d19;
+    --md-surface-container: #1b211d;
+    --md-surface-container-high: #252b27;
+    --md-surface-container-highest: #303632;
+    --md-outline: #8a938c;
+    --md-outline-variant: #404943;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --md-primary: #95d5b0;
+  --md-on-primary: #003822;
+  --md-primary-container: #0e5136;
+  --md-on-primary-container: #b0f1cb;
+  --md-secondary: #b3ccbc;
+  --md-on-secondary: #1f352a;
+  --md-secondary-container: #354b3f;
+  --md-on-secondary-container: #cfe9d7;
+  --md-tertiary: #a4cddc;
+  --md-on-tertiary: #053541;
+  --md-tertiary-container: #234c59;
+  --md-on-tertiary-container: #c0e9f9;
+  --md-error: #ffb4ab;
+  --md-surface: #0f1511;
+  --md-on-surface: #dfe4dd;
+  --md-on-surface-variant: #c0c9c1;
+  --md-surface-container-lowest: #0a0f0c;
+  --md-surface-container-low: #171d19;
+  --md-surface-container: #1b211d;
+  --md-surface-container-high: #252b27;
+  --md-surface-container-highest: #303632;
+  --md-outline: #8a938c;
+  --md-outline-variant: #404943;
+  color-scheme: dark;
+}
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+@theme inline {
+  --color-primary: var(--md-primary);
+  --color-on-primary: var(--md-on-primary);
+  --color-primary-container: var(--md-primary-container);
+  --color-on-primary-container: var(--md-on-primary-container);
+  --color-secondary: var(--md-secondary);
+  --color-on-secondary: var(--md-on-secondary);
+  --color-secondary-container: var(--md-secondary-container);
+  --color-on-secondary-container: var(--md-on-secondary-container);
+  --color-tertiary: var(--md-tertiary);
+  --color-on-tertiary: var(--md-on-tertiary);
+  --color-tertiary-container: var(--md-tertiary-container);
+  --color-on-tertiary-container: var(--md-on-tertiary-container);
+  --color-error: var(--md-error);
+  --color-surface: var(--md-surface);
+  --color-on-surface: var(--md-on-surface);
+  --color-on-surface-variant: var(--md-on-surface-variant);
+  --color-surface-container-lowest: var(--md-surface-container-lowest);
+  --color-surface-container-low: var(--md-surface-container-low);
+  --color-surface-container: var(--md-surface-container);
+  --color-surface-container-high: var(--md-surface-container-high);
+  --color-surface-container-highest: var(--md-surface-container-highest);
+  --color-outline: var(--md-outline);
+  --color-outline-variant: var(--md-outline-variant);
+}
 
 @theme {
+  --font-sans: 'Roboto Flex Variable', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
-  --color-bg: #0a0e0c;
-  --color-surface: #101512;
-  --color-surface-hover: #151b17;
-  --color-border: rgb(255 255 255 / 10%);
-  --color-border-accent: rgb(61 255 162 / 25%);
+  /* M3 Expressive shape scale */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 28px;
+  --radius-2xl: 32px;
 
-  --color-text: #e7f5ec;
-  --color-text-muted: rgb(231 245 236 / 62%);
-  --color-text-dim: rgb(231 245 236 / 38%);
-
-  --color-accent: #3dffa2;
-  --color-accent-soft: rgb(61 255 162 / 12%);
-  --color-accent-2: #22d3ee;
-  --color-danger: #ff5f56;
-  --color-warn: #ffbd2e;
-  --color-ok: #27c93f;
+  /* M3 Expressive motion */
+  --ease-spatial: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-effects: cubic-bezier(0.2, 0, 0, 1);
 }
 
 @layer base {
   * {
-    border-color: var(--color-border);
+    border-color: var(--color-outline-variant);
   }
 
   html {
-    color-scheme: dark;
     scroll-behavior: smooth;
   }
 
   body {
-    background-color: var(--color-bg);
-    color: var(--color-text);
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
 
   ::selection {
-    background-color: var(--color-accent-soft);
-    color: var(--color-accent);
+    background-color: var(--color-primary-container);
+    color: var(--color-on-primary-container);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -66,20 +173,83 @@
   }
 }
 
-@keyframes caret-blink {
-  0%,
-  45% {
-    opacity: 1;
-  }
-  50%,
-  95% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+/* M3 type scale */
+@utility display-md {
+  font-size: clamp(2.25rem, 1.6rem + 2.6vw, 2.8125rem);
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  font-variation-settings: 'opsz' 96;
 }
 
-.animate-caret {
-  animation: caret-blink 1.1s step-end infinite;
+@utility headline-md {
+  font-size: clamp(1.5rem, 1.3rem + 0.8vw, 1.75rem);
+  line-height: 1.28;
+  font-weight: 500;
+}
+
+@utility title-lg {
+  font-size: 1.375rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+}
+
+@utility title-md {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+@utility body-lg {
+  font-size: 1rem;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+@utility body-md {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  letter-spacing: 0.015em;
+}
+
+@utility label-lg {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+@utility label-md {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+/* Interaction state layer: tints the element with its own content color */
+@utility state-layer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: currentColor;
+    opacity: 0;
+    transition: opacity 200ms var(--ease-effects);
+    pointer-events: none;
+  }
+
+  &:hover::before {
+    opacity: 0.08;
+  }
+
+  &:focus-visible::before,
+  &:active::before {
+    opacity: 0.12;
+  }
 }

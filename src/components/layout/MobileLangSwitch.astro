@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from '../ui/ThemeToggle.astro';
+
 interface Props {
   alternatePath: string;
   langLabel: string;
@@ -7,10 +9,13 @@ interface Props {
 const { alternatePath, langLabel } = Astro.props;
 ---
 
-<a
-  href={alternatePath}
-  aria-label="Cambiar idioma"
-  class="fixed right-4 top-4 z-50 rounded-md border border-border bg-bg/90 px-2.5 py-1.5 font-mono text-xs text-text-muted backdrop-blur transition-colors hover:border-border-accent hover:text-accent md:hidden"
->
-  {langLabel}
-</a>
+<div class="fixed right-4 top-4 z-50 flex items-center gap-1 rounded-full bg-surface-container-high p-1 shadow-sm md:hidden">
+  <ThemeToggle />
+  <a
+    href={alternatePath}
+    aria-label="Cambiar idioma"
+    class="state-layer label-lg inline-flex h-10 items-center rounded-full px-4 text-on-surface-variant"
+  >
+    {langLabel}
+  </a>
+</div>

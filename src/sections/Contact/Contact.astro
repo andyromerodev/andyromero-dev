@@ -1,7 +1,7 @@
 ---
 import type { UiContent } from '../../i18n/ui';
 import { socialLinks } from '../../i18n/ui';
-import TerminalWindow from '../../components/ui/TerminalWindow.astro';
+import Button from '../../components/ui/Button.astro';
 
 interface Props {
   t: UiContent;
@@ -18,43 +18,40 @@ const links = [
 ];
 ---
 
-<section class="mx-auto flex max-w-2xl flex-col gap-8 px-6 py-14 md:py-20">
+<section class="mx-auto flex max-w-2xl flex-col gap-8 px-4 pb-14 pt-20 sm:px-6 md:py-20">
   <div class="flex flex-col gap-3">
-    <h1 class="font-mono text-xs uppercase tracking-widest text-text-dim">{contact.eyebrow}</h1>
-    <h2 class="text-2xl font-semibold text-text sm:text-3xl">{contact.title}</h2>
-    <p class="max-w-xl text-sm text-text-muted sm:text-base">{contact.intro}</p>
+    <h1 class="label-lg text-primary">{contact.eyebrow}</h1>
+    <h2 class="headline-md text-on-surface">{contact.title}</h2>
+    <p class="body-lg max-w-xl text-on-surface-variant">{contact.intro}</p>
   </div>
 
-  <TerminalWindow prompt="whoami --contact">
-    <dl class="flex flex-col gap-4">
+  <div class="flex flex-col gap-5 rounded-2xl bg-primary-container p-6 sm:p-8">
+    <dl class="flex flex-col gap-4 text-on-primary-container">
       <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-        <dt class="w-32 shrink-0 font-mono text-xs text-text-dim">{contact.locationLabel}</dt>
-        <dd class="text-sm text-text-muted">{hero.location}</dd>
+        <dt class="label-md w-32 shrink-0 opacity-80">{contact.locationLabel}</dt>
+        <dd class="body-lg">{hero.location}</dd>
       </div>
       <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-        <dt class="w-32 shrink-0 font-mono text-xs text-text-dim">{contact.emailLabel}</dt>
-        <dd>
-          <a href={`mailto:${socialLinks.email}`} class="font-mono text-sm text-accent-2 hover:text-accent">
-            {socialLinks.email}
-          </a>
-        </dd>
+        <dt class="label-md w-32 shrink-0 opacity-80">{contact.emailLabel}</dt>
+        <dd class="body-lg break-all">{socialLinks.email}</dd>
       </div>
     </dl>
-  </TerminalWindow>
+    <Button href={`mailto:${socialLinks.email}`} class="w-fit">{contact.emailLabel}</Button>
+  </div>
 
   <div class="flex flex-col gap-3">
-    <p class="font-mono text-xs uppercase tracking-widest text-text-dim">{contact.linksTitle}</p>
-    <div class="flex flex-col divide-y divide-white/10 rounded-lg border border-border bg-surface">
+    <p class="label-lg text-primary">{contact.linksTitle}</p>
+    <div class="flex flex-col gap-1 rounded-xl bg-surface-container-low p-2">
       {
         links.map((link) => (
           <a
             href={link.href}
             target={link.href.startsWith('mailto:') ? undefined : '_blank'}
             rel={link.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
-            class="flex items-center justify-between px-5 py-3.5 transition-colors hover:bg-white/[0.03]"
+            class="state-layer flex flex-col gap-0.5 rounded-lg px-4 py-3 text-on-surface sm:flex-row sm:items-center sm:justify-between"
           >
-            <span class="font-mono text-sm text-text">{link.label}</span>
-            <span class="font-mono text-xs text-text-dim">{link.value}</span>
+            <span class="title-md">{link.label}</span>
+            <span class="truncate font-mono text-xs text-on-surface-variant">{link.value}</span>
           </a>
         ))
       }

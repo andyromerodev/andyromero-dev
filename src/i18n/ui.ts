@@ -52,7 +52,6 @@ export interface UiContent {
   nav: NavItem[];
   langSwitch: { label: string; current: string };
   hero: {
-    prompt: string;
     name: string;
     headline: string;
     location: string;
@@ -145,7 +144,6 @@ export const ui: Record<Lang, UiContent> = {
     nav: nav({ home: 'Inicio', about: 'Sobre mí', projects: 'Proyectos', skills: 'Skills', contact: 'Contacto' }, ''),
     langSwitch: { label: 'EN', current: 'Español' },
     hero: {
-      prompt: 'whoami',
       name: 'Andy Luis Hernández Romero',
       headline: 'Desarrollador Android · Kotlin · Jetpack Compose · Clean Architecture',
       location: 'Tarapoto, Perú',
@@ -395,7 +393,6 @@ export const ui: Record<Lang, UiContent> = {
     nav: navEn({ home: 'Home', about: 'About', projects: 'Projects', skills: 'Skills', contact: 'Contact' }),
     langSwitch: { label: 'ES', current: 'English' },
     hero: {
-      prompt: 'whoami',
       name: 'Andy Luis Hernández Romero',
       headline: 'Android Developer · Kotlin · Jetpack Compose · Clean Architecture',
       location: 'Tarapoto, Peru',

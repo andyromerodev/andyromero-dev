@@ -1,6 +1,5 @@
 ---
 import type { UiContent } from '../../i18n/ui';
-import TerminalWindow from '../../components/ui/TerminalWindow.astro';
 
 interface Props {
   t: UiContent;
@@ -10,37 +9,35 @@ const { t } = Astro.props;
 const { about } = t;
 ---
 
-<section class="mx-auto flex max-w-3xl flex-col gap-14 px-6 py-14 md:py-20">
-  <div class="flex flex-col gap-6">
-    <h1 class="font-mono text-xs uppercase tracking-widest text-text-dim">{about.eyebrow}</h1>
-    <TerminalWindow prompt="cat about.md">
-      <p class="text-base leading-relaxed text-text-muted">{about.profile}</p>
-    </TerminalWindow>
+<section class="mx-auto flex max-w-3xl flex-col gap-14 px-4 pb-14 pt-20 sm:px-6 md:py-20">
+  <div class="flex flex-col gap-4">
+    <h1 class="label-lg text-primary">{about.eyebrow}</h1>
+    <div class="rounded-2xl bg-primary-container p-6 sm:p-8">
+      <p class="body-lg text-on-primary-container">{about.profile}</p>
+    </div>
   </div>
 
   <div class="flex flex-col gap-6">
-    <h2 class="font-mono text-sm font-medium text-text">
-      <span class="text-accent">#</span> {about.experienceTitle}
-    </h2>
-    <ol class="flex flex-col gap-6 border-l border-border pl-6">
+    <h2 class="headline-md text-on-surface">{about.experienceTitle}</h2>
+    <ol class="flex flex-col gap-8 border-l-2 border-outline-variant pl-6">
       {
         about.experience.map((item) => (
           <li class="relative">
-            <span class="absolute -left-[27px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-accent bg-bg" />
+            <span class="absolute -left-[33px] top-1 h-4 w-4 rounded-full border-4 border-surface bg-primary" />
             <div class="flex flex-col gap-1.5">
               <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                <p class="font-mono text-sm text-text">
-                  {item.position} <span class="text-text-dim">·</span> {item.company}
+                <p class="title-md text-on-surface">
+                  {item.position} <span class="text-outline">·</span> {item.company}
                 </p>
-                <p class="font-mono text-xs text-text-dim">{item.period}</p>
+                <p class="font-mono text-xs text-on-surface-variant">{item.period}</p>
               </div>
-              <p class="font-mono text-xs text-text-dim">{item.location}</p>
-              {item.summary && <p class="text-sm leading-relaxed text-text-muted">{item.summary}</p>}
+              <p class="label-md text-on-surface-variant">{item.location}</p>
+              {item.summary && <p class="body-md text-on-surface-variant">{item.summary}</p>}
               {item.highlights.length > 0 && (
                 <ul class="mt-1 flex flex-col gap-1">
                   {item.highlights.map((h) => (
-                    <li class="flex gap-2 text-sm leading-relaxed text-text-muted">
-                      <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-text-dim" />
+                    <li class="body-md flex gap-2.5 text-on-surface-variant">
+                      <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
                       <span>{h}</span>
                     </li>
                   ))}
@@ -51,10 +48,10 @@ const { about } = t;
                   href={item.link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="mt-1 inline-flex w-fit items-center gap-1.5 font-mono text-xs text-accent-2 hover:text-accent"
+                  class="state-layer label-lg -ml-3 mt-1 inline-flex h-10 w-fit items-center gap-1.5 rounded-full px-3 text-primary"
                 >
                   {item.link.label}
-                  <svg viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M7 17 17 7M8 7h9v9" />
                   </svg>
                 </a>
@@ -67,19 +64,19 @@ const { about } = t;
   </div>
 
   <div class="flex flex-col gap-6">
-    <h2 class="font-mono text-sm font-medium text-text"><span class="text-accent">#</span> {about.educationTitle}</h2>
+    <h2 class="headline-md text-on-surface">{about.educationTitle}</h2>
     {
       about.education.map((edu) => (
-        <div class="flex flex-col gap-1.5 rounded-lg border border-border bg-surface p-5">
+        <div class="flex flex-col gap-1.5 rounded-xl bg-surface-container-low p-6">
           <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-            <p class="font-mono text-sm text-text">{edu.institution}</p>
-            <p class="font-mono text-xs text-text-dim">{edu.period}</p>
+            <p class="title-md text-on-surface">{edu.institution}</p>
+            <p class="font-mono text-xs text-on-surface-variant">{edu.period}</p>
           </div>
-          <p class="text-sm text-text-muted">{edu.degree} — {edu.location}</p>
+          <p class="body-md text-on-surface-variant">{edu.degree} — {edu.location}</p>
           <ul class="mt-1 flex flex-col gap-1">
             {edu.highlights.map((h) => (
-              <li class="flex gap-2 text-sm leading-relaxed text-text-muted">
-                <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-text-dim" />
+              <li class="body-md flex gap-2.5 text-on-surface-variant">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
                 <span>{h}</span>
               </li>
             ))}
@@ -90,14 +87,14 @@ const { about } = t;
   </div>
 
   <div class="flex flex-col gap-6">
-    <h2 class="font-mono text-sm font-medium text-text"><span class="text-accent">#</span> {about.additionalTrainingTitle}</h2>
-    <div class="flex flex-col gap-1.5 rounded-lg border border-border bg-surface p-5">
-      <p class="font-mono text-sm text-text">{about.additionalTraining.name}</p>
-      <p class="text-sm text-text-muted">{about.additionalTraining.location}</p>
+    <h2 class="headline-md text-on-surface">{about.additionalTrainingTitle}</h2>
+    <div class="flex flex-col gap-1.5 rounded-xl bg-surface-container-low p-6">
+      <p class="title-md text-on-surface">{about.additionalTraining.name}</p>
+      <p class="body-md text-on-surface-variant">{about.additionalTraining.location}</p>
       <ul class="mt-1 flex flex-col gap-1">
         {about.additionalTraining.highlights.map((h) => (
-          <li class="flex gap-2 text-sm leading-relaxed text-text-muted">
-            <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-text-dim" />
+          <li class="body-md flex gap-2.5 text-on-surface-variant">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
             <span>{h}</span>
           </li>
         ))}
@@ -106,13 +103,13 @@ const { about } = t;
   </div>
 
   <div class="flex flex-col gap-6">
-    <h2 class="font-mono text-sm font-medium text-text"><span class="text-accent">#</span> {about.languagesTitle}</h2>
-    <div class="flex flex-col gap-3 sm:flex-row sm:gap-6">
+    <h2 class="headline-md text-on-surface">{about.languagesTitle}</h2>
+    <div class="flex flex-col gap-3 sm:flex-row">
       {
         about.languages.map((l) => (
-          <div class="flex-1 rounded-lg border border-border bg-surface p-4">
-            <p class="font-mono text-sm text-text">{l.label}</p>
-            <p class="text-sm text-text-muted">{l.details}</p>
+          <div class="flex-1 rounded-xl bg-secondary-container p-5">
+            <p class="title-md text-on-secondary-container">{l.label}</p>
+            <p class="body-md text-on-secondary-container/80">{l.details}</p>
           </div>
         ))
       }

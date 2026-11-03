@@ -10,18 +10,18 @@ const { t } = Astro.props;
 const { skills } = t;
 ---
 
-<section class="mx-auto flex max-w-4xl flex-col gap-8 px-6 py-14 md:py-20">
+<section class="mx-auto flex max-w-4xl flex-col gap-8 px-4 pb-14 pt-20 sm:px-6 md:py-20">
   <div class="flex flex-col gap-3">
-    <h1 class="font-mono text-xs uppercase tracking-widest text-text-dim">{skills.eyebrow}</h1>
-    <h2 class="text-2xl font-semibold text-text sm:text-3xl">{skills.title}</h2>
-    <p class="max-w-2xl text-sm text-text-muted sm:text-base">{skills.intro}</p>
+    <h1 class="label-lg text-primary">{skills.eyebrow}</h1>
+    <h2 class="headline-md text-on-surface">{skills.title}</h2>
+    <p class="body-lg max-w-2xl text-on-surface-variant">{skills.intro}</p>
   </div>
 
-  <div class="flex flex-col gap-6">
+  <div class="flex flex-col gap-4">
     {
       skills.groups.map((group) => (
-        <div class="flex flex-col gap-3 rounded-lg border border-border bg-surface p-5">
-          <p class="font-mono text-sm text-text">{group.label}</p>
+        <div class="flex flex-col gap-4 rounded-xl bg-surface-container-low p-6">
+          <p class="title-md text-on-surface">{group.label}</p>
           <div class="flex flex-wrap gap-2">
             {group.tags.map((tag) => (
               <SkillChip label={tag} />
