@@ -10,14 +10,14 @@ const { t } = Astro.props;
 const { projects } = t;
 ---
 
-<section class="mx-auto flex max-w-5xl flex-col gap-8 px-6 py-14 md:py-20">
+<section class="mx-auto flex max-w-5xl flex-col gap-8 px-4 pb-14 pt-20 sm:px-6 md:py-20">
   <div class="flex flex-col gap-3">
-    <h1 class="font-mono text-xs uppercase tracking-widest text-text-dim">{projects.eyebrow}</h1>
-    <h2 class="text-2xl font-semibold text-text sm:text-3xl">{projects.title}</h2>
-    <p class="max-w-2xl text-sm text-text-muted sm:text-base">{projects.intro}</p>
+    <h1 class="label-lg text-primary">{projects.eyebrow}</h1>
+    <h2 class="headline-md text-on-surface">{projects.title}</h2>
+    <p class="body-lg max-w-2xl text-on-surface-variant">{projects.intro}</p>
   </div>
 
-  <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
     {projects.items.map((project) => <ProjectCard project={project} />)}
   </div>
 </section>

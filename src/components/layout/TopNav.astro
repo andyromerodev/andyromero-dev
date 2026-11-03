@@ -1,5 +1,6 @@
 ---
 import type { Lang, NavItem } from '../../i18n/ui';
+import ThemeToggle from '../ui/ThemeToggle.astro';
 
 interface Props {
   items: NavItem[];
@@ -18,11 +19,11 @@ function isActive(href: string) {
 }
 ---
 
-<header class="sticky top-0 z-50 hidden border-b border-white/10 bg-bg/90 backdrop-blur md:block">
-  <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-    <a href={lang === 'en' ? '/en' : '/'} class="font-mono text-sm text-text">
-      <span class="text-accent">andy</span><span class="text-text-dim">@</span><span class="text-accent-2">dev</span><span class="text-text-dim">:~$</span>
-      <span class="animate-caret text-text">_</span>
+<header class="sticky top-0 z-50 hidden bg-surface/85 backdrop-blur-md md:block">
+  <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
+    <a href={lang === 'en' ? '/en' : '/'} class="title-md flex items-center gap-2.5 text-on-surface">
+      <span class="grid h-9 w-9 place-items-center rounded-[40%] bg-primary-container font-mono text-xs text-on-primary-container" aria-hidden="true">AR</span>
+      Andy Romero
     </a>
 
     <nav aria-label="Navegación principal" class="flex items-center gap-1">
@@ -32,8 +33,8 @@ function isActive(href: string) {
             href={item.href}
             aria-current={isActive(item.href) ? 'page' : undefined}
             class:list={[
-              'rounded-md px-3 py-2 font-mono text-xs tracking-wide transition-colors',
-              isActive(item.href) ? 'text-accent' : 'text-text-muted hover:text-text',
+              'state-layer label-lg inline-flex h-10 items-center rounded-full px-4 transition-colors duration-200 ease-effects',
+              isActive(item.href) ? 'bg-secondary-container text-on-secondary-container' : 'text-on-surface-variant',
             ]}
           >
             {item.label}
@@ -41,9 +42,11 @@ function isActive(href: string) {
         ))
       }
 
+      <ThemeToggle class="ml-2" />
+
       <a
         href={alternatePath}
-        class="ml-2 rounded-md border border-border px-2.5 py-1.5 font-mono text-xs text-text-muted transition-colors hover:border-border-accent hover:text-accent"
+        class="state-layer label-lg ml-1 inline-flex h-10 items-center rounded-full border border-outline px-4 text-on-surface-variant"
         aria-label="Cambiar idioma"
       >
         {langLabel}

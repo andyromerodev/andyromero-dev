@@ -25,6 +25,18 @@ const pageDescription = description ?? t.site.description;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>
+      (() => {
+        let stored = null;
+        try {
+          stored = localStorage.getItem('theme');
+        } catch {}
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.dataset.theme = stored ?? (prefersDark ? 'dark' : 'light');
+      })();
+    </script>
+    <meta name="theme-color" content="#f6fbf4" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1511" media="(prefers-color-scheme: dark)" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" hreflang={lang === 'es' ? 'en' : 'es'} href={new URL(alternatePath, Astro.site)} />
@@ -42,11 +54,11 @@ const pageDescription = description ?? t.site.description;
 
     <meta name="generator" content={Astro.generator} />
   </head>
-  <body class="min-h-screen bg-bg font-sans text-text">
+  <body class="min-h-screen bg-surface font-sans text-on-surface">
     <TopNav items={t.nav} lang={lang} langLabel={t.langSwitch.label} alternatePath={alternatePath} />
     <MobileLangSwitch alternatePath={alternatePath} langLabel={t.langSwitch.label} />
 
-    <main class="pb-20 md:pb-0">
+    <main class="pb-24 md:pb-0">
       <slot />
     </main>
 

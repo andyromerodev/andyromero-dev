@@ -8,25 +8,25 @@ const { qvapayPrivacy: p } = t;
 ---
 
 <BaseLayout title={p.pageTitle} description={p.metaDescription}>
-  <section class="mx-auto flex max-w-3xl flex-col gap-10 px-6 py-14 md:py-20">
+  <section class="mx-auto flex max-w-3xl flex-col gap-10 px-4 pb-14 pt-20 sm:px-6 md:py-20">
     <div class="flex flex-col gap-3">
-      <h1 class="font-mono text-xs uppercase tracking-widest text-text-dim">{p.eyebrow}</h1>
-      <h2 class="text-2xl font-semibold text-text md:text-3xl">{p.title}</h2>
-      <p class="text-sm text-text-dim">{p.lastUpdated}</p>
+      <h1 class="label-lg text-primary">{p.eyebrow}</h1>
+      <h2 class="headline-md text-on-surface">{p.title}</h2>
+      <p class="font-mono text-xs text-on-surface-variant">{p.lastUpdated}</p>
     </div>
 
-    <div class="flex flex-col gap-8 text-sm leading-relaxed text-text-muted md:text-base">
+    <div class="flex flex-col gap-8 body-lg text-on-surface-variant">
       <p>{p.intro}</p>
 
       <div class="flex flex-col gap-3">
-        <h3 class="font-mono text-sm font-medium text-text"><span class="text-accent">#</span> {p.dataTitle}</h3>
+        <h3 class="title-lg text-on-surface">{p.dataTitle}</h3>
         <ul class="flex flex-col gap-2">
           {
             p.dataItems.map((item) => (
               <li class="flex gap-2">
-                <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-text-dim" />
+                <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary/60" />
                 <span>
-                  <strong class="text-text">{item.label}:</strong> {item.text}
+                  <strong class="text-on-surface">{item.label}:</strong> {item.text}
                 </span>
               </li>
             ))
@@ -35,12 +35,12 @@ const { qvapayPrivacy: p } = t;
       </div>
 
       <div class="flex flex-col gap-3">
-        <h3 class="font-mono text-sm font-medium text-text"><span class="text-accent">#</span> {p.notDoingTitle}</h3>
+        <h3 class="title-lg text-on-surface">{p.notDoingTitle}</h3>
         <ul class="flex flex-col gap-2">
           {
             p.notDoingItems.map((text) => (
               <li class="flex gap-2">
-                <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-text-dim" />
+                <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary/60" />
                 <span>{text}</span>
               </li>
             ))
@@ -49,14 +49,14 @@ const { qvapayPrivacy: p } = t;
       </div>
 
       <div class="flex flex-col gap-3">
-        <h3 class="font-mono text-sm font-medium text-text"><span class="text-accent">#</span> {p.thirdPartiesTitle}</h3>
+        <h3 class="title-lg text-on-surface">{p.thirdPartiesTitle}</h3>
         <ul class="flex flex-col gap-2">
           {
             p.thirdPartiesItems.map((item) => (
               <li class="flex gap-2">
-                <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-text-dim" />
+                <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary/60" />
                 <span>
-                  <strong class="text-text">{item.label}:</strong> {item.text}
+                  <strong class="text-on-surface">{item.label}:</strong> {item.text}
                 </span>
               </li>
             ))
@@ -65,18 +65,18 @@ const { qvapayPrivacy: p } = t;
       </div>
 
       <div class="flex flex-col gap-3">
-        <h3 class="font-mono text-sm font-medium text-text"><span class="text-accent">#</span> {p.rightsTitle}</h3>
+        <h3 class="title-lg text-on-surface">{p.rightsTitle}</h3>
         <p>{p.rightsText}</p>
       </div>
 
       <div class="flex flex-col gap-3">
-        <h3 class="font-mono text-sm font-medium text-text"><span class="text-accent">#</span> {p.contactTitle}</h3>
+        <h3 class="title-lg text-on-surface">{p.contactTitle}</h3>
         <p>
           For privacy questions or data deletion requests, reach out via the
-          <a href="https://t.me/qvapayandroid" class="text-accent underline underline-offset-2" target="_blank" rel="noopener noreferrer">
+          <a href="https://t.me/qvapayandroid" class="text-primary underline underline-offset-2" target="_blank" rel="noopener noreferrer">
             {p.contactTelegramLabel}
           </a>
-          or through this site's <a href="/en/contact" class="text-accent underline underline-offset-2">{p.contactSiteLabel}</a> form.
+          or through this site's <a href="/en/contact" class="text-primary underline underline-offset-2">{p.contactSiteLabel}</a> form.
         </p>
       </div>
     </div>

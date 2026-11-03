@@ -8,29 +8,29 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<article class="flex h-full flex-col justify-between gap-4 rounded-lg border border-border bg-surface p-5 transition-colors hover:border-border-accent">
+<article class="group flex h-full flex-col justify-between gap-5 rounded-xl bg-surface-container-low p-6 transition-[border-radius,background-color] duration-350 ease-spatial hover:rounded-2xl hover:bg-surface-container">
   <div class="flex flex-col gap-2">
     <div class="flex items-start justify-between gap-3">
-      <h3 class="font-mono text-sm font-medium text-text">{project.name}</h3>
-      <span class="shrink-0 font-mono text-[11px] text-text-dim">{project.date}</span>
+      <h3 class="title-lg text-on-surface">{project.name}</h3>
+      <span class="mt-1 shrink-0 font-mono text-xs text-on-surface-variant">{project.date}</span>
     </div>
-    <p class="text-sm leading-relaxed text-text-muted">{project.summary}</p>
+    <p class="body-md text-on-surface-variant">{project.summary}</p>
   </div>
 
-  <div class="flex flex-col gap-3">
+  <div class="flex flex-col gap-4">
     <div class="flex flex-wrap gap-1.5">
       {project.tags.map((tag) => (
-        <span class="rounded-full border border-border px-2 py-0.5 font-mono text-[11px] text-text-dim">{tag}</span>
+        <span class="inline-flex h-7 items-center rounded-sm border border-outline-variant px-2.5 font-mono text-[11px] text-on-surface-variant">{tag}</span>
       ))}
     </div>
     <a
       href={project.link.url}
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex items-center gap-1.5 font-mono text-xs text-accent-2 hover:text-accent"
+      class="state-layer label-lg -ml-3 inline-flex h-10 w-fit items-center gap-1.5 rounded-full px-3 text-primary"
     >
       {project.link.label}
-      <svg viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform duration-200 ease-spatial group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M7 17 17 7M8 7h9v9" />
       </svg>
     </a>
