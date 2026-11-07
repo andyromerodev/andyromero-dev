@@ -1,0 +1,37 @@
+---
+import type { UiContent } from '../../i18n/ui';
+import DemoCard from '../../components/ui/DemoCard.astro';
+
+interface Props {
+  t: UiContent;
+}
+
+const { t } = Astro.props;
+const { demos } = t;
+---
+
+<section class="mx-auto flex max-w-5xl flex-col gap-8 px-4 pb-14 pt-20 sm:px-6 md:py-20">
+  <div class="flex flex-col gap-3">
+    <h1 class="label-lg text-primary">{demos.eyebrow}</h1>
+    <h2 class="headline-md text-on-surface">{demos.title}</h2>
+    <p class="body-lg max-w-2xl text-on-surface-variant">{demos.intro}</p>
+  </div>
+
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    {
+      demos.items.map((demo, index) => (
+        <DemoCard
+          demo={demo}
+          statusLive={demos.statusLive}
+          statusSoon={demos.statusSoon}
+          variantsLabel={demos.variantsLabel}
+          eager={index === 0}
+        />
+      ))
+    }
+    <div class="flex min-h-48 flex-col items-start justify-center gap-2 rounded-xl border border-dashed border-outline-variant p-6">
+      <h3 class="title-md text-on-surface">{demos.moreTitle}</h3>
+      <p class="body-md text-on-surface-variant">{demos.moreText}</p>
+    </div>
+  </div>
+</section>

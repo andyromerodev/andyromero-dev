@@ -1,0 +1,88 @@
+---
+import type { DemoItem } from '../../i18n/ui';
+
+interface Props {
+  demo: DemoItem;
+  statusLive: string;
+  statusSoon: string;
+  variantsLabel: string;
+  /** Load the image right away (first card, above the fold); the rest lazy-load. */
+  eager?: boolean;
+}
+
+const { demo, statusLive, statusSoon, variantsLabel, eager = false } = Astro.props;
+const live = demo.status === 'live';
+---
+
+<article class="group flex h-full flex-col overflow-hidden rounded-xl bg-surface-container-low transition-[border-radius,background-color] duration-350 ease-spatial hover:rounded-2xl hover:bg-surface-container">
+  <a href={demo.link.url} target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true" class="block overflow-hidden">
+    <img
+      src={demo.image.src}
+      alt={demo.image.alt}
+      width="1344"
+      height="750"
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+      class="aspect-[16/9] w-full object-cover transition-transform duration-350 ease-spatial group-hover:scale-[1.02]"
+    />
+  </a>
+
+  <div class="flex flex-1 flex-col justify-between gap-5 p-6">
+    <div class="flex flex-col gap-2">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="title-lg text-on-surface">{demo.name}</h3>
+        <span
+          class:list={[
+            'mt-0.5 inline-flex h-6 shrink-0 items-center rounded-full px-2.5 text-[11px] font-medium',
+            live ? 'bg-tertiary-container text-on-tertiary-container' : 'border border-outline-variant text-on-surface-variant',
+          ]}
+        >
+          {live ? statusLive : statusSoon}
+        </span>
+      </div>
+      <p class="body-md text-on-surface-variant">{demo.summary}</p>
+    </div>
+
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-wrap gap-1.5">
+        {demo.tags.map((tag) => (
+          <span class="inline-flex h-7 items-center rounded-sm border border-outline-variant px-2.5 font-mono text-[11px] text-on-surface-variant">{tag}</span>
+        ))}
+      </div>
+
+      {
+        demo.variants && demo.variants.length > 0 && (
+          <div class="flex flex-col gap-2">
+            <p class="label-md text-on-surface-variant">{variantsLabel}</p>
+            <ul class="flex flex-wrap gap-1.5">
+              {demo.variants.map((variant) => (
+                <li>
+                  <a
+                    href={variant.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="state-layer label-md inline-flex h-8 items-center rounded-full bg-secondary-container px-3 text-on-secondary-container"
+                  >
+                    {variant.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+
+      <a
+        href={demo.link.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="state-layer label-lg -ml-3 inline-flex h-10 w-fit items-center gap-1.5 rounded-full px-3 text-primary"
+      >
+        {demo.link.label}
+        <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform duration-200 ease-spatial group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 17 17 7M8 7h9v9" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</article>

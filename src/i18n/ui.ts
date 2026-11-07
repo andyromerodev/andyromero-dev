@@ -10,7 +10,7 @@ export const defaultLang: Lang = 'es';
 export interface NavItem {
   label: string;
   href: string;
-  icon: 'home' | 'about' | 'projects' | 'skills' | 'contact';
+  icon: 'home' | 'about' | 'projects' | 'demos' | 'skills' | 'contact';
 }
 
 export interface ExperienceItem {
@@ -29,6 +29,17 @@ export interface ProjectItem {
   summary: string;
   tags: string[];
   link: { label: string; url: string };
+}
+
+export interface DemoItem {
+  name: string;
+  summary: string;
+  tags: string[];
+  status: 'live' | 'soon';
+  image: { src: string; alt: string };
+  link: { label: string; url: string };
+  /** Direct links to variants of the same demo (e.g. one per sample business). */
+  variants?: { label: string; url: string }[];
 }
 
 export interface SkillGroup {
@@ -79,6 +90,17 @@ export interface UiContent {
     intro: string;
     items: ProjectItem[];
   };
+  demos: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    statusLive: string;
+    statusSoon: string;
+    variantsLabel: string;
+    moreTitle: string;
+    moreText: string;
+    items: DemoItem[];
+  };
   skills: {
     eyebrow: string;
     title: string;
@@ -118,18 +140,22 @@ export interface UiContent {
   };
 }
 
-const nav = (t: { home: string; about: string; projects: string; skills: string; contact: string }, prefix: string): NavItem[] => [
+type NavLabels = { home: string; about: string; projects: string; demos: string; skills: string; contact: string };
+
+const nav = (t: NavLabels, prefix: string): NavItem[] => [
   { label: t.home, href: `${prefix}/`, icon: 'home' },
   { label: t.about, href: `${prefix}/sobre-mi`, icon: 'about' },
   { label: t.projects, href: `${prefix}/proyectos`, icon: 'projects' },
+  { label: t.demos, href: `${prefix}/demos`, icon: 'demos' },
   { label: t.skills, href: `${prefix}/habilidades`, icon: 'skills' },
   { label: t.contact, href: `${prefix}/contacto`, icon: 'contact' },
 ];
 
-const navEn = (t: { home: string; about: string; projects: string; skills: string; contact: string }): NavItem[] => [
+const navEn = (t: NavLabels): NavItem[] => [
   { label: t.home, href: '/en', icon: 'home' },
   { label: t.about, href: '/en/about', icon: 'about' },
   { label: t.projects, href: '/en/projects', icon: 'projects' },
+  { label: t.demos, href: '/en/demos', icon: 'demos' },
   { label: t.skills, href: '/en/skills', icon: 'skills' },
   { label: t.contact, href: '/en/contact', icon: 'contact' },
 ];
@@ -141,7 +167,7 @@ export const ui: Record<Lang, UiContent> = {
       description:
         'Andy Luis Hernández Romero, desarrollador Android especializado en Kotlin, Jetpack Compose y Clean Architecture. Con base en Tarapoto, Perú.',
     },
-    nav: nav({ home: 'Inicio', about: 'Sobre mí', projects: 'Proyectos', skills: 'Skills', contact: 'Contacto' }, ''),
+    nav: nav({ home: 'Inicio', about: 'Sobre mí', projects: 'Proyectos', demos: 'Demos', skills: 'Skills', contact: 'Contacto' }, ''),
     langSwitch: { label: 'EN', current: 'Español' },
     hero: {
       name: 'Andy Luis Hernández Romero',
@@ -307,6 +333,32 @@ export const ui: Record<Lang, UiContent> = {
         },
       ],
     },
+    demos: {
+      eyebrow: 'ls ~/demos',
+      title: 'Demos en vivo',
+      intro: 'Aplicaciones de muestra que puedes abrir y probar ahora mismo. Cada una sirve como base para adaptarla a un negocio real.',
+      statusLive: 'En vivo',
+      statusSoon: 'Próximamente',
+      variantsLabel: 'Pruébalo con tres marcas distintas',
+      moreTitle: 'Más demos en camino',
+      moreText: 'Voy sumando demos a esta sección a medida que los termino.',
+      items: [
+        {
+          name: 'Pastelerías — pedidos por WhatsApp',
+          summary:
+            'PWA instalable en el teléfono para pastelerías y panaderías: menú con fotos, productos personalizables, carrito y pedido directo por WhatsApp. Una sola instalación atiende a varias pastelerías, cada una con su marca, colores y catálogo.',
+          tags: ['Next.js', 'PWA', 'TypeScript', 'Tailwind CSS', 'Cloudflare Workers'],
+          status: 'live',
+          image: { src: '/demos/pastelerias.webp', alt: 'Tres pastelerías de ejemplo con paletas de color distintas' },
+          link: { label: 'Abrir demo', url: 'https://pastelerias.andyromero.dev' },
+          variants: [
+            { label: 'Maison Dulce & Trigo', url: 'https://pastelerias.andyromero.dev/maison-dulce' },
+            { label: 'El Horno de Masa Madre', url: 'https://pastelerias.andyromero.dev/el-horno' },
+            { label: 'Atelier Pistacho & Miel', url: 'https://pastelerias.andyromero.dev/atelier-pistacho' },
+          ],
+        },
+      ],
+    },
     skills: {
       eyebrow: 'cat skills.json',
       title: 'Habilidades técnicas',
@@ -390,7 +442,7 @@ export const ui: Record<Lang, UiContent> = {
       description:
         'Andy Luis Hernández Romero, Android developer specialized in Kotlin, Jetpack Compose and Clean Architecture. Based in Tarapoto, Peru.',
     },
-    nav: navEn({ home: 'Home', about: 'About', projects: 'Projects', skills: 'Skills', contact: 'Contact' }),
+    nav: navEn({ home: 'Home', about: 'About', projects: 'Projects', demos: 'Demos', skills: 'Skills', contact: 'Contact' }),
     langSwitch: { label: 'ES', current: 'English' },
     hero: {
       name: 'Andy Luis Hernández Romero',
@@ -548,6 +600,32 @@ export const ui: Record<Lang, UiContent> = {
           summary: 'Web application for the MyMonyMony financial platform.',
           tags: ['Web App', 'Fintech'],
           link: { label: 'mymonymony.com', url: 'https://mymonymony.com/' },
+        },
+      ],
+    },
+    demos: {
+      eyebrow: 'ls ~/demos',
+      title: 'Live demos',
+      intro: 'Sample apps you can open and try right now. Each one is a starting point to adapt to a real business.',
+      statusLive: 'Live',
+      statusSoon: 'Coming soon',
+      variantsLabel: 'Try it with three different brands',
+      moreTitle: 'More demos on the way',
+      moreText: 'I add demos to this section as I finish them.',
+      items: [
+        {
+          name: 'Bakeries — ordering via WhatsApp',
+          summary:
+            'Installable PWA for bakeries and pastry shops: menu with photos, customizable products, cart and direct ordering over WhatsApp. A single deployment serves many bakeries, each with its own brand, colors and catalog.',
+          tags: ['Next.js', 'PWA', 'TypeScript', 'Tailwind CSS', 'Cloudflare Workers'],
+          status: 'live',
+          image: { src: '/demos/pastelerias.webp', alt: 'Three sample bakeries with different color palettes' },
+          link: { label: 'Open demo', url: 'https://pastelerias.andyromero.dev' },
+          variants: [
+            { label: 'Maison Dulce & Trigo', url: 'https://pastelerias.andyromero.dev/maison-dulce' },
+            { label: 'El Horno de Masa Madre', url: 'https://pastelerias.andyromero.dev/el-horno' },
+            { label: 'Atelier Pistacho & Miel', url: 'https://pastelerias.andyromero.dev/atelier-pistacho' },
+          ],
         },
       ],
     },

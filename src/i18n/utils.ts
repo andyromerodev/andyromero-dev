@@ -18,6 +18,7 @@ const esToEnSlug: Record<string, string> = {
   '': '',
   'sobre-mi': 'about',
   proyectos: 'projects',
+  demos: 'demos',
   habilidades: 'skills',
   contacto: 'contact',
   'qvapay/privacidad': 'qvapay/privacy',
