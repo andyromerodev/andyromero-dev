@@ -119,6 +119,13 @@ export interface UiContent {
     builtWith: string;
     rights: string;
   };
+  notFound: {
+    eyebrow: string;
+    title: string;
+    text: string;
+    home: string;
+    demos: string;
+  };
   qvapayPrivacy: {
     pageTitle: string;
     metaDescription: string;
@@ -390,6 +397,13 @@ export const ui: Record<Lang, UiContent> = {
       builtWith: 'Construido con Astro + Tailwind CSS.',
       rights: 'Todos los derechos reservados.',
     },
+    notFound: {
+      eyebrow: 'error 404',
+      title: 'Página no encontrada',
+      text: 'La dirección que buscas no existe o fue movida. Vuelve al inicio o prueba los demos en vivo.',
+      home: 'Ir al inicio',
+      demos: 'Ver demos',
+    },
     qvapayPrivacy: {
       pageTitle: 'Política de Privacidad · QPay',
       metaDescription: 'Política de privacidad de QPay, aplicación Android personal inspirada en los servicios de QvaPay.',
@@ -659,6 +673,13 @@ export const ui: Record<Lang, UiContent> = {
     footer: {
       builtWith: 'Built with Astro + Tailwind CSS.',
       rights: 'All rights reserved.',
+    },
+    notFound: {
+      eyebrow: 'error 404',
+      title: 'Page not found',
+      text: 'The address you are looking for does not exist or was moved. Head back home or try the live demos.',
+      home: 'Go home',
+      demos: 'View demos',
     },
     qvapayPrivacy: {
       pageTitle: 'Privacy Policy · QPay',

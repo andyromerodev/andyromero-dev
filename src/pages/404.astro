@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import { ui } from '../i18n/ui';
+
+// Cloudflare Pages serves a single root 404.html for the whole site, so this page carries both
+// languages and an inline script swaps to English when the missing URL starts with /en.
+const es = ui.es.notFound;
+const en = ui.en.notFound;
+const titleEn = `${en.title} · ${ui.en.site.title}`;
+---
+
+<BaseLayout title={es.title} noindex>
+  <section class="mx-auto flex max-w-5xl flex-col gap-8 px-4 pb-14 pt-20 sm:px-6 md:py-24" data-title-en={titleEn}>
+    <div data-lang="es" class="flex flex-col gap-4">
+      <p class="label-lg text-primary">{es.eyebrow}</p>
+      <h1 class="headline-md text-on-surface">{es.title}</h1>
+      <p class="body-lg max-w-2xl text-on-surface-variant">{es.text}</p>
+      <div class="mt-2 flex flex-wrap gap-3">
+        <Button href="/">{es.home}</Button>
+        <Button href="/demos" variant="tonal">{es.demos}</Button>
+      </div>
+    </div>
+
+    <div data-lang="en" lang="en" class="hidden flex-col gap-4">
+      <p class="label-lg text-primary">{en.eyebrow}</p>
+      <h1 class="headline-md text-on-surface">{en.title}</h1>
+      <p class="body-lg max-w-2xl text-on-surface-variant">{en.text}</p>
+      <div class="mt-2 flex flex-wrap gap-3">
+        <Button href="/en">{en.home}</Button>
+        <Button href="/en/demos" variant="tonal">{en.demos}</Button>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (() => {
+      if (!/^\/en(\/|$)/.test(location.pathname)) return;
+      const section = document.querySelector('[data-title-en]');
+      const es = document.querySelector('[data-lang="es"]');
+      const en = document.querySelector('[data-lang="en"]');
+      if (!section || !es || !en) return;
+      es.classList.replace('flex', 'hidden');
+      en.classList.replace('hidden', 'flex');
+      document.documentElement.lang = 'en';
+      document.title = section.getAttribute('data-title-en');
+    })();
+  </script>
+</BaseLayout>

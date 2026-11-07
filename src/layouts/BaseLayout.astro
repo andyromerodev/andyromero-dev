@@ -9,9 +9,11 @@ import { getLangFromUrl, useTranslations, getAlternatePath } from '../i18n/utils
 interface Props {
   title?: string;
   description?: string;
+  /** Error pages: keep out of search results and skip canonical/alternate links. */
+  noindex?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, noindex = false } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const alternatePath = getAlternatePath(Astro.url, lang);
@@ -38,8 +40,9 @@ const pageDescription = description ?? t.site.description;
     <meta name="theme-color" content="#f6fbf4" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0f1511" media="(prefers-color-scheme: dark)" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={canonicalURL} />
-    <link rel="alternate" hreflang={lang === 'es' ? 'en' : 'es'} href={new URL(alternatePath, Astro.site)} />
+    {noindex && <meta name="robots" content="noindex" />}
+    {!noindex && <link rel="canonical" href={canonicalURL} />}
+    {!noindex && <link rel="alternate" hreflang={lang === 'es' ? 'en' : 'es'} href={new URL(alternatePath, Astro.site)} />}
 
     <title>{pageTitle}</title>
     <meta name="description" content={pageDescription} />
